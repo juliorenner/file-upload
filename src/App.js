@@ -37,10 +37,10 @@ class App extends Component {
       method: "POST",
       headers: {
         Authentication: `Basic ${encriptedPassword}`,
-        "Access-Control-Allow-Origin": "*",
         "Content-Type": "text/csv"
       },
-      body: fileContent.currentTarget.result
+      body: fileContent.currentTarget.result,
+      mode: "cors"
     })
       .then(response => alert("Request sucessfully sent!"))
       .catch(error => console.log(error));
