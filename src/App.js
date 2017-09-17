@@ -36,7 +36,7 @@ class App extends Component {
     fetch(destinationUrl, {
       method: "POST",
       headers: {
-        Authentication: `Basic ${encriptedPassword}`,
+        Authorization: `Basic ${encriptedPassword}`,
         "Content-Type": "text/csv"
       },
       body: fileContent.currentTarget.result,
