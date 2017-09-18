@@ -5,11 +5,12 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { user: "", password: "", file: "" };
+    this.state = { user: "", password: "", file: "", loading: true };
 
     this.setUser = this.setUser.bind(this);
     this.setPassword = this.setPassword.bind(this);
     this.setFile = this.setFile.bind(this);
+    this.setLoading = this.setLoading.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.postRequest = this.postRequest.bind(this);
     this.getFileContent = this.getFileContent.bind(this);
@@ -22,6 +23,7 @@ class App extends Component {
   }
 
   getFileContent(file) {
+    this.setLoading(true);
     let reader = new FileReader();
 
     reader.onload = this.postRequest;
@@ -42,7 +44,10 @@ class App extends Component {
       body: fileContent.currentTarget.result,
       mode: "cors"
     })
-      .then(response => alert("Request sucessfully sent!"))
+      .then(response => {
+        this.setLoading(false);
+        alert("Request sucessfully sent!");
+      })
       .catch(error => console.log(error));
   }
 
@@ -58,12 +63,21 @@ class App extends Component {
     this.setState({ file: event.target.files[0] });
   }
 
+  setLoading(state) {
+    this.setState({ loading: state });
+  }
+
   render() {
     return (
       <div className="App">
         <div className="App-header">
           <h2>Tasks Generator</h2>
         </div>
+        {this.state.loading ? (
+          <div className="loader-wrapper">
+            <div className="loader" />
+          </div>
+        ) : null}
         <form className="form" onSubmit={this.onSubmit}>
           <label htmlFor="user">USER:</label>
           <input
