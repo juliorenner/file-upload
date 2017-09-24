@@ -44,7 +44,7 @@ class App extends Component {
 
   postRequest(fileContent) {
     let destinationUrl =
-      "https://myapp-unpredicted-mirk.cfapps.sap.hana.ondemand.com/test";
+      "https://myapp-unpredicted-mirk.cfapps.sap.hana.ondemand.com/api/createtasks";
     let encriptedPassword = btoa(`${this.state.user}:${this.state.password}`);
 
     fetch(destinationUrl, {
