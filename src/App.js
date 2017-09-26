@@ -29,7 +29,7 @@ class App extends Component {
   }
 
   getFileContent(file) {
-    if (file.type !== "text/csv") {
+    if (file.type !== "text/csv" && file.type !== 'application/vnd.ms-excel') {
       this.setAlert(true, "The file should be of type '.csv'");
       return;
     }
