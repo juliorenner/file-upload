@@ -29,7 +29,6 @@ class App extends Component {
   }
 
   getFileContent(file) {
-    console.log(file.type);
     if (file.type !== "text/csv" && file.type !== 'application/vnd.ms-excel') {
       this.setAlert(true, "The file should be of type '.csv'");
       return;
